@@ -10,7 +10,7 @@ class Notifier:
     def sendTelegram(self, items: List[Item], user: User):
         if items != [] and items != None:
             for item in items:
-                message = f"{item.title}\n\nDescription:\n{item.description}\n\nPrix: {item.price_numeric}{item.currency}\n\nURL: {item.url}"
+                message = f"{item.title}\n\n\n\nPrice: {item.price}{item.currency}\n\nURL: {item.url}"
                 requests.get(
                     f"https://api.telegram.org/bot2064361445:AAEdNxt_fWtXgWeLs_En_PyzqQSUrNtcHxI/sendMessage?text={message}&chat_id={user.telegramId}")
 
@@ -75,12 +75,12 @@ class Notifier:
             for item in items:
                 message["embeds"][0]["author"]["name"] = item.title
                 message["embeds"][0]["author"]["url"] = f"{item.url}"
-                message["embeds"][0]["author"]["icon_url"] = f"{item.photos[0]}"
-                message["embeds"][0]["fields"][0]["value"] = f"{item.price_numeric}{item.currency}"
+                message["embeds"][0]["author"]["icon_url"] = f"{item.photo}"
+                message["embeds"][0]["fields"][0]["value"] = f"{item.price}{item.currency}"
                 #message["embeds"][0]["fields"][0]["value"] = f"{item.url}"
-                message["embeds"][0]["fields"][1]["value"] = f"{item.status_id}"
-                message["embeds"][0]["fields"][2]["value"] = f"{item.size}"
-                message["embeds"][0]["image"]["url"] = f"{item.photos[0]}"
+                #message["embeds"][0]["fields"][1]["value"] = f"{item.status_id}"
+                message["embeds"][0]["fields"][2]["value"] = f"{item.size_title}"
+                message["embeds"][0]["image"]["url"] = f"{item.photo}"
                 message["embeds"][1]["url"] = f"{item.url}"
 
                 requests.post(user.discordWebhook, json=message)
