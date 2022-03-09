@@ -10,7 +10,7 @@ class Notifier:
     def sendTelegram(self, items: List[Item], user: User):
         if items != [] and items != None:
             for item in items:
-                message = f"{item.title}\n\n\n\nPrice: {item.price}{item.currency}\n\nURL: {item.url}"
+                message = f"{item.title}\nPrice: {item.price}{item.currency}\n\nURL: {item.url}"
                 requests.get(
                     f"https://api.telegram.org/bot2064361445:AAEdNxt_fWtXgWeLs_En_PyzqQSUrNtcHxI/sendMessage?text={message}&chat_id={user.telegramId}")
 
