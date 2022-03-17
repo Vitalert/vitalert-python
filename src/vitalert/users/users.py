@@ -10,8 +10,11 @@ import boto3
 
 
 class Users:
-    def __init__(self) -> None:
-        self.client = boto3.client('cognito-idp')
+    def __init__(self,key=None,secret=None) -> None:
+        if key == None or secret == None:
+            self.client = boto3.client('cognito-idp')
+        else:
+            self.client = boto3.Session(region_name="eu-west-1").resource('cognito-idp', aws_access_key_id=key, aws_secret_access_key=secret)
 
     def getProUsers(self) -> List[User]:
         """Retrieves Pro users"""
