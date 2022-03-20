@@ -29,6 +29,7 @@ class User:
     def complete_user(self):
         query = "query MyQuery {listUsers(filter: {id: {eq: \"%s\"}}) {items {discordWebhook telegramId useTelegram}}}" % (self.userId)
         userInfos = requests.post(st.API_URL, headers=st.API_HEADERS, json={"query": query}).json()
+        print(userInfos)
         userInfos = userInfos['data']['listUsers']["items"][0]
 
         #uses telegram ?
