@@ -13,7 +13,7 @@ class Alert:
         try:
             self.synced = data["synced"]
         except:
-            pass
+            self.synced = False
 
 
     def update_last_items(self, items: list):
