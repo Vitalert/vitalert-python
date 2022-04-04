@@ -11,7 +11,7 @@ class Alerts:
         self.alerts = []
 
     def getAlerts(self) -> List[Alert]:
-        query = "query MyQuery { listAlertsAdmin(filter: {userId: {eq: \"%s\"}}) {items {url lastItems id}}}" % (self.userId)
+        query = "query MyQuery { listAlertsAdmin(filter: {userId: {eq: \"%s\"}}) {items {url lastItems id synced}}}" % (self.userId)
 
         alerts = requests.post(st.API_URL, headers=st.API_HEADERS, json={"query": query}).json()
 

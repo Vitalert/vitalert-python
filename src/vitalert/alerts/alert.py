@@ -10,6 +10,11 @@ class Alert:
         self.lastItems: List[int] = data["lastItems"]
         self.id: str = data["id"]
 
+        try:
+            self.synced = data["synced"]
+        except:
+            pass
+
 
     def update_last_items(self, items: list):
 
